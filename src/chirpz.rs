@@ -100,9 +100,7 @@ pub(crate) fn convert_chirpz<T: Float + NumAssign>(
         let w = data.src_omega[(i * i) % dlen];
         a.push(s * w);
     }
-    for _ in srclen..len {
-        a.push(zero());
-    }
+    a.resize(len, zero());
 
     convert_rad2_inplace(
         &mut a,
@@ -161,9 +159,8 @@ pub(crate) fn convert_chirpz_inplace<T: Float + NumAssign>(
         let w = data.src_omega[(i * i) % dlen];
         a.push(s * w);
     }
-    for _ in srclen..len {
-        a.push(zero());
-    }
+
+    a.resize(len, zero());
 
     convert_rad2_inplace(
         &mut a,

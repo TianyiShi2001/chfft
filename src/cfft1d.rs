@@ -128,10 +128,8 @@ impl<T: Float + FloatConst + NumAssign> CFft1D<T> {
             }
 
             let hlen = (pow2len >> 1) + 1;
-            for _ in len..hlen {
-                rot_conj.push(zero());
-                rot.push(zero());
-            }
+            rot_conj.resize(hlen, zero());
+            rot.resize(hlen, zero());
             for i in hlen..pow2len {
                 let t = rot_conj[pow2len - i];
                 rot_conj.push(t);
